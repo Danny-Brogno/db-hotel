@@ -1,0 +1,44 @@
+GOAL: in foglio di testo, scrivere le query necessarie per rispondere ai seguenti quesiti:
+● Selezionare tutti gli ospiti
+● Selezionare tutti gli ospiti con document type = a CI
+● Selezionare i paganti che abbiano un ospite id associato
+● Selezionare tutte le stanze del primo piano
+● Selezionare tutti gli ospiti che iniziano per E
+● Selezionare tutti gli ospiti che abbiano meno di 30 anni
+● Seleziona tutte le prenotazioni precedenti a maggio 2018
+
+
+1) Selezionare tutti gli ospiti:
+SELECT * FROM ospiti;
+--------------------------------------------------------------------------------
+
+2) Selezionare tutti gli ospiti con document type = a CI:
+SELECT * FROM ospiti WHERE document_type='CI';
+--------------------------------------------------------------------------------
+
+3) Selezionare i paganti che abbiano un ospite id associato:
+SELECT * FROM paganti WHERE ospite_id <> 'NULL';
+--------------------------------------------------------------------------------
+
+4) Selezionare tutte le stanze del primo piano
+SELECT * from stanze WHERE floor = 1;
+--------------------------------------------------------------------------------
+
+5) Selezionare tutti gli ospiti che iniziano per E:
+
+se la ricerca è per nome:
+SELECT * FROM ospiti WHERE name LIKE "E%"
+
+se la ricerca è per cognome:
+SELECT * FROM ospiti WHERE lastname LIKE "E%"
+--------------------------------------------------------------------------------
+
+6) Selezionare tutti gli ospiti che abbiano meno di 30 anni:
+SELECT name, lastname FROM ospiti WHERE YEAR(NOW()) - YEAR(date_of_birth) < 30;
+
+se vogliamo vedere anche la data vicino ai nomi per poter controllare:
+SELECT * FROM ospiti where YEAR(NOW()) - YEAR(date_of_birth) < 30;
+--------------------------------------------------------------------------------
+
+7) Seleziona tutte le prenotazioni precedenti a maggio 2018:
+SELECT * FROM prenotazioni WHERE MONTH(created_at) = 4;
